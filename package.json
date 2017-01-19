@@ -1,0 +1,19 @@
+{
+  "name": "buckle-typings",
+  "version": "0.0.1",
+  "description": "A converter from TypeScript .d.ts files to BuckleScript external declarations",
+  "keywords": [
+    "bucklescript",
+    "typescript"
+  ],
+  "author": "Paul Carleton",
+  "license": "MIT",
+  "dependencies": {
+    "bs-platform": "1.4.1",
+    "typescript": "2.1.4"
+  },
+  "scripts": {
+      "build": "bsb",
+      "watch": "bsb -w"
+  }
+}
