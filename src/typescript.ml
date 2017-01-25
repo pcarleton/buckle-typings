@@ -1,6 +1,17 @@
 
 module SyntaxKind = struct
-    type t 
+    type t =
+        | Foo
+        | Bar
+
+    type enumHolder 
+    external enum : enumHolder = "SyntaxKind" [@@bs.module "typescript"] [@@bs.val]
+
+
+    external getNameExt : enumHolder -> t -> string = "" [@@bs.get_index]
+
+    let getName tv = 
+        getNameExt enum tv
 end 
 
 class type _identifier = object
