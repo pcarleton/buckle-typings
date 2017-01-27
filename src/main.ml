@@ -1,4 +1,7 @@
 
+let string_repeat s n =
+      String.concat "" (Array.to_list (Array.make n s))
+
 let getName n =
     n##name##text
 
@@ -8,9 +11,6 @@ let rec getVals n =
         | Some members -> Array.fold_left (fun vs m -> Array.append (getVals m) vs) [||] members
     in 
        Array.append [|getName n|] childVals 
-
-let string_repeat s n =
-      String.concat "" (Array.to_list (Array.make n s))
 
 module Line = struct
     type t = { text: string; level : int}
@@ -73,15 +73,11 @@ let printNode n =
 
 
 let () =
-    (* let path = "test/enum-small.d.ts" in *)
     let path = Fs.argv.(2) in 
     let txt = Fs.bufferToStr ( Fs.readFileSync path) in 
-    (* The file path doesn't seem important for this use case so far*)
     (* TODO: Make a declaration for this enum *)
     let scriptTarget = 1 in
     let obj = Typescript.createSourceFile path txt scriptTarget false in
     let statements = obj##statements in
     let statement = statements.(0) in
     printNode statement
-    (* Array.iter (fun s -> Js.log s##kind) statements *)
-    
