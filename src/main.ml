@@ -72,13 +72,10 @@ let printNode n =
     Js.log singleStr
 
 
-type buffer
-external readFileSync : string -> buffer = "readFileSync" [@@bs.module "fs"]
-external bufferToStr : buffer -> string = "toString" [@@bs.send]
-
 let () =
-    let path = "test/enum-small.d.ts" in
-    let txt = bufferToStr ( readFileSync path) in 
+    (* let path = "test/enum-small.d.ts" in *)
+    let path = Fs.argv.(2) in 
+    let txt = Fs.bufferToStr ( Fs.readFileSync path) in 
     (* The file path doesn't seem important for this use case so far*)
     (* TODO: Make a declaration for this enum *)
     let scriptTarget = 1 in
